@@ -5,7 +5,8 @@ require("./css/a.scss");
 //exports
 module.exports = {
     log: function() {
-        console.log('a')
+        console.log('a');
     },
-    name: 'a'
-}
+    name: 'a',
+    test:'test'
+};

@@ -34,7 +34,7 @@
 /******/ 	__webpack_require__.c = installedModules;
 
 /******/ 	// __webpack_public_path__
-/******/ 	__webpack_require__.p = "";
+/******/ 	__webpack_require__.p = "./dist/";
 
 /******/ 	// Load entry module and return exports
 /******/ 	return __webpack_require__(0);
@@ -91,7 +91,7 @@
 	        console.log('b')
 	    },
 	    nbme: 'b'
-	}
+	};
 
 
 /***/ },
@@ -105,10 +105,11 @@
 	//exports
 	module.exports = {
 	    log: function() {
-	        console.log('a')
+	        console.log('a');
 	    },
-	    name: 'a'
-	}
+	    name: 'a',
+	    test:'test'
+	};
 
 
 /***/ },
@@ -146,7 +147,7 @@
 
 
 	// module
-	exports.push([module.id, "/* style.css */\nbody {\n  background: yellow;\n  font-size: 14px; }\n  body .info {\n    font-weight: bold;\n    font-size: 18px;\n    line-height: 2;\n    -webkit-transition: all 0.2s;\n    transition: all 0.2s; }\n", ""]);
+	exports.push([module.id, "/* style.css */\nbody {\n  font-size: 14px; }\n  body .info {\n    margin-top: 20px;\n    font-weight: bold;\n    font-size: 18px;\n    line-height: 1.5;\n    -webkit-transition: all 0.2s;\n    transition: all 0.2s;\n    color: #c00; }\n  body .test {\n    color: #ccc; }\n", ""]);
 
 	// exports
 

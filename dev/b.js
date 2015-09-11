@@ -6,4 +6,4 @@ module.exports = {
         console.log('b')
     },
     nbme: 'b'
-}
+};

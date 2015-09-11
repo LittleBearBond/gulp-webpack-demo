@@ -1,5 +1,5 @@
 {
-  "name": "webpack",
+  "name": "gulp-webpack-test",
   "version": "1.0.0",
   "description": "a webpack test",
   "main": "main.js",
@@ -25,6 +25,7 @@
     "node-sass": "^3.3.2",
     "path": "^0.11.14",
     "sass-loader": "^2.0.1",
-    "style-loader": "^0.12.3"
+    "style-loader": "^0.12.3",
+    "webpack": "^1.12.1"
   }
 }

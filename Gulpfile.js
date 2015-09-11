@@ -1,27 +1,37 @@
 var gulp = require('gulp');
-var webpack = require("gulp-webpack");
-var webpackConfig = require("./webpack.config.js");
-
+var webpack = require("webpack");
 
 var devSrc = './dev/';
-var distSrc = './dist/';
-
+var distSrc = "./dist/";
 
 var config = {
     //sass 相关配置
     sass: {
-        src: devSrc + '**/*.sass'
+        watchSrc: devSrc + '**/*.scss'
     },
     script: {
-        entry: devSrc + 'main.js', //入口
-        dist: distSrc, //打包后位置
         watchSrc: devSrc + '**/*.js', //监控脚本
-        name: 'bundle.js'
+    },
+    webpackCfg: {
+        //文件入口
+        entry: "./dev/main.js",
+        //出口文件输出配置
+        output: {
+            path: distSrc, //js位置
+            publicPath: distSrc, //web打包的资源地址
+            filename: "build.js"
+        }
     }
 };
 
-gulp.task('webpack', function() {
-    webpack(webpackConfig);
+var webpackConfig = require("./webpack.config.js")(config);
+
+gulp.task('webpack-task', function() {
+    console.log(webpackConfig)
+
+    webpack(webpackConfig, function(err, stats) {
+        console.log(err)
+    });
     /*return gulp
         .src(devSrc + 'main.js')
         .pipe(webpack(webpackConfig))
@@ -29,13 +39,11 @@ gulp.task('webpack', function() {
 });
 
 // 注册缺省任务
-gulp.task('default', ['webpack']);
+gulp.task('default', ['webpack-task']);
 
-gulp.task('watch', ["webpack"], function() {
+gulp.task('watch', ["webpack-task"], function() {
 
-    gulp.watch(config.script.watchSrc, ['webpack']);
-    gulp.watch(config.sass.src, ['webpack']);
+    gulp.watch(config.script.watchSrc, ['webpack-task']);
+    gulp.watch(config.sass.watchSrc, ['webpack-task']);
 
 });
-
-//gulp.task('default', ['watch']);
