@@ -74,7 +74,6 @@
 	    document.getElementById("content")
 	);
 
-
 	console.log(__webpack_require__(1));
 
 
@@ -90,7 +89,7 @@
 	    log: function() {
 	        console.log('b')
 	    },
-	    nbme: 'b'
+	    name: 'b'
 	};
 
 

@@ -28,6 +28,5 @@ React.render(
     document.getElementById("content")
 );
 
-
 console.log(require('./b'));
 

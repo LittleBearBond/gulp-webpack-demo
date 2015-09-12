@@ -5,5 +5,5 @@ module.exports = {
     log: function() {
         console.log('b')
     },
-    nbme: 'b'
+    name: 'b'
 };
