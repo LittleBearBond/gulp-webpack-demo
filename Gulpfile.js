@@ -1,3 +1,15 @@
+
+/**
+ * author           xj
+ * @date            2015-09-10 19:48:18
+ * @email           568915669@qq.com
+ * @description
+ */
+//imgmin
+//base64
+//jsmin
+//css min
+//tpl-->js
 var gulp = require('gulp');
 var webpack = require('webpack');
 //http://www.browsersync.cn/docs/recipes/
@@ -61,7 +73,6 @@ gulp.task('web-server', function() {
     browserSync.init(config.webServer);
 });
 
-
 // 注册缺省任务
 //gulp.task('default', ['webpack-task']);
 
@@ -73,7 +84,6 @@ gulp.task('watch', ['webpack-task', 'web-server'], function() {
     //reload
     //gulp.watch(config.sass.watchSrc).on('change', reload);
     //gulp.watch(config.script.watchSrc).on('change', reload);
-
 });
 
 gulp.task('default', ['watch']);
