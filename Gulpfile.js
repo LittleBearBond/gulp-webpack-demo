@@ -17,10 +17,11 @@ var webpack = require('webpack');
 //http://www.browsersync.cn/docs/gulp/
 var browserSync = require('browser-sync').create();
 var reload = browserSync.reload;
-
+//开发目录
 var devSrc = './dev/';
+//发布目录
 var distSrc = './dist/';
-
+//相关配置项
 var config = {
     //sass 相关配置
     sass: {
@@ -50,10 +51,11 @@ var config = {
         logPrefix: 'bear',
         open: true,
         logConnections: true,
+        //监听文件
         files: [distSrc + '**/*.js', distSrc + '**/*.css', './main.html'] //监控变化
     },
 };
-
+//读取到webpack的配置
 var webpackConfig = require('./webpack.config.js')(config);
 
 gulp.task('webpack-task', function() {
@@ -68,7 +70,7 @@ gulp.task('webpack-task', function() {
         .pipe(gulp.dest('./dist'));*/
 });
 
-// web服务 Server + watching scss/html files
+// web服务 Server + watching scss/js files
 gulp.task('web-server', function() {
     browserSync.init(config.webServer);
 });
