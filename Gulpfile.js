@@ -55,11 +55,12 @@ var config = {
         files: [distSrc + '**/*.js', distSrc + '**/*.css', './main.html'] //监控变化
     },
 };
+
 //读取到webpack的配置
 var webpackConfig = require('./webpack.config.js')(config);
 
 gulp.task('webpack-task', function() {
-    console.log(webpackConfig)
+    //console.log(webpackConfig)
 
     webpack(webpackConfig, function(err, stats) {
         console.log(err)
