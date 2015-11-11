@@ -8,44 +8,44 @@ webpack --watch 来进行开发过程持续的增量编译(飞快地!)
 webpack -d 来生成 SourceMaps
 */
 module.exports = function(config) {
-  return {
-    //页面入口文件配置
-    entry: config.webpackCfg.entry,
-    //文件输出配置
-    output: config.webpackCfg.output,
-    module: {
-      preLoaders: [{
-        test: /\.js$/,
-        loader: "source-map-loader"
-      }],
-      //加载器配置
-      loaders: [
-        //.css 文件使用 style-loader 和 css-loader 来处理
-        {
-          test: /\.css$/,
-          loader: "style!css!autoprefixer-loader"
+    return {
+        //页面入口文件配置
+        entry: config.webpackCfg.entry,
+        //文件输出配置
+        output: config.webpackCfg.output,
+        module: {
+            preLoaders: [{
+                test: /\.js$/,
+                loader: "source-map-loader"
+            }],
+            //加载器配置
+            loaders: [
+                //.css 文件使用 style-loader 和 css-loader 来处理
+                {
+                    test: /\.css$/,
+                    loader: "style!css!autoprefixer-loader"
+                },
+                //
+                {
+                    test: /\.scss$/,
+                    loader: 'style!css!sass!autoprefixer-loader'
+                },
+                //.js 文件使用 jsx-loader 来编译处理
+                {
+                    test: /\.js$/,
+                    loader: "jsx-loader"
+                }
+                /*,
+                //图片文件使用 url-loader 来处理，小于8kb的直接转为base64
+                {
+                test: /\.(png|jpg)$/,
+                loader: 'url-loader?limit=8192'
+                }*/
+            ]
         },
-        //
-        {
-          test: /\.scss$/,
-          loader: 'style!css!sass!autoprefixer-loader'
+        resolve: {
+            extensions: ['', '.js', '.jsx']
         },
-        //.js 文件使用 jsx-loader 来编译处理
-        {
-          test: /\.js$/,
-          loader: "jsx-loader"
-        }
-        /*,
-        //图片文件使用 url-loader 来处理，小于8kb的直接转为base64
-        {
-          test: /\.(png|jpg)$/,
-          loader: 'url-loader?limit=8192'
-        }*/
-      ]
-    },
-    resolve: {
-      extensions: ['', '.js', '.jsx']
-    },
-    plugins: []
-  }
+        plugins: []
+    }
 };

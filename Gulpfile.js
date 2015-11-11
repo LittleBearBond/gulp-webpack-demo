@@ -1,4 +1,3 @@
-
 /**
  * author           xj
  * @date            2015-09-10 19:48:18
@@ -44,12 +43,12 @@ var config = {
         server: './',
         index: 'main.html',
         port: 3000,
-        /*ui: {
+        ui: {
             port: 8080
-        },*/
+        },
         logLevel: 'debug',
         logPrefix: 'bear',
-        open: true,
+        open: true, //'ui',
         logConnections: true,
         //监听文件
         files: [distSrc + '**/*.js', distSrc + '**/*.css', './main.html'] //监控变化
@@ -59,7 +58,7 @@ var config = {
 //读取到webpack的配置
 var webpackConfig = require('./webpack.config.js')(config);
 
-gulp.task('webpack-task', function() {
+gulp.task('webpack-task', () => {
     //console.log(webpackConfig)
 
     webpack(webpackConfig, function(err, stats) {
@@ -72,14 +71,14 @@ gulp.task('webpack-task', function() {
 });
 
 // web服务 Server + watching scss/js files
-gulp.task('web-server', function() {
+gulp.task('web-server', () => {
     browserSync.init(config.webServer);
 });
 
 // 注册缺省任务
 //gulp.task('default', ['webpack-task']);
 
-gulp.task('watch', ['webpack-task', 'web-server'], function() {
+gulp.task('watch', ['webpack-task', 'web-server'], () => {
 
     gulp.watch(config.script.watchSrc, ['webpack-task']);
     gulp.watch(config.sass.watchSrc, ['webpack-task']);
