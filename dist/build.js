@@ -146,7 +146,7 @@
 
 
 	// module
-	exports.push([module.id, "/* style.css */\nbody {\n  font-size: 14px; }\n  body .info {\n    margin-top: 20px;\n    font-weight: bold;\n    font-size: 18px;\n    line-height: 1.5;\n    -webkit-transition: all 0.2s;\n    transition: all 0.2s;\n    color: #c00; }\n  body .test {\n    color: #ccc;\n    font-size: 15px; }\n", ""]);
+	exports.push([module.id, "/* style.css */\nbody {\n  font-size: 14px; }\n  body .info {\n    margin-top: 20px;\n    font-weight: bold;\n    font-size: 18px;\n    line-height: 1.5;\n    -webkit-transition: all .2s;\n    transition: all .2s;\n    color: #c00; }\n  body .test {\n    color: #ccc;\n    font-size: 15px; }\n", ""]);
 
 	// exports
 
