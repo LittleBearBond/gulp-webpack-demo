@@ -44,84 +44,50 @@
 /* 0 */
 /***/ function(module, exports, __webpack_require__) {
 
+	//load css
+	__webpack_require__(1);
 	/* 内容区模块代码 */
 	var ContentMode = React.createClass({displayName: "ContentMode",
-	        render: function(){
-	            return (
-	                React.createElement("div", {className: "ContentMode"}, 
-						React.createElement("div", {class: "contents"}, this.props.contents), 
-	                    this.props.children
-	                )
-	            )
-	        }
+	    render: function() {
+	        return ( React.createElement("div", {className: "ContentMode"}, 
+	            React.createElement("div", {class: "contents"}, " ", 
+	                this.props.contents, 
+	            " "), " ", 
+	                this.props.children, 
+	            " ")
+	        )
+	    }
 	});
 
 	/* 页面div封装 上面三个模块 */
 	var Page = React.createClass({displayName: "Page",
-	    render: function(){
-	        return (
-	            React.createElement("div", {className: "homepage"}, 
-	                React.createElement(ContentMode, {contents: "longen"}, "this is one comment"), 
-	                React.createElement(ContentMode, {contents: "longen2"}, "this is two comment")
-	            )
-	            )
-	        }
+	    render: function() {
+	        return ( React.createElement("div", {className: "homepage"}, 
+	            React.createElement(ContentMode, {contents: "longen"}, " this is one comment "), " ", React.createElement(ContentMode, {contents: "longen2"}, " this is two comment "), " ")
+	        )
+	    }
 	});
 
 	/* 初始化到content容器内 */
 	React.render(
-	    React.createElement(Page,null),
+	    React.createElement(Page, null),
 	    document.getElementById("content")
 	);
-
-	console.log(__webpack_require__(1));
-
+	var b = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"./b\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+	console.log(b);
 
 
 /***/ },
 /* 1 */
 /***/ function(module, exports, __webpack_require__) {
 
-	__webpack_require__(2).log();
-	console.log('b');
-
-	module.exports = {
-	    log: function() {
-	        console.log('b--moudle')
-	    },
-	    name: 'b'
-	};
-
-
-/***/ },
-/* 2 */
-/***/ function(module, exports, __webpack_require__) {
-
-	
-	//load css
-	__webpack_require__(3);
-
-	//exports
-	module.exports = {
-	    log: function() {
-	        console.log('a');
-	    },
-	    name: 'a',
-	    test:'test'
-	};
-
-
-/***/ },
-/* 3 */
-/***/ function(module, exports, __webpack_require__) {
-
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(4);
+	var content = __webpack_require__(2);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(6)(content, {});
+	var update = __webpack_require__(4)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -138,21 +104,21 @@
 	}
 
 /***/ },
-/* 4 */
+/* 2 */
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(5)();
+	exports = module.exports = __webpack_require__(3)();
 	// imports
 
 
 	// module
-	exports.push([module.id, "/* style.css */\nbody {\n  font-size: 14px; }\n  body .info {\n    margin-top: 20px;\n    font-weight: bold;\n    font-size: 18px;\n    line-height: 1.5;\n    -webkit-transition: all .2s;\n    transition: all .2s;\n    color: #c00; }\n  body .test {\n    color: #ccc;\n    font-size: 15px; }\n", ""]);
+	exports.push([module.id, "/* style.css */\nbody {\n  font-size: 14px; }\n  body #content {\n    line-height: 1.5; }\n  body .info {\n    margin-top: 20px;\n    font-weight: bold;\n    font-size: 18px;\n    line-height: 1.5;\n    -webkit-transition: all .2s;\n    transition: all .2s;\n    color: #c00; }\n  body .test {\n    color: #ccc;\n    font-size: 15px; }\n", ""]);
 
 	// exports
 
 
 /***/ },
-/* 5 */
+/* 3 */
 /***/ function(module, exports) {
 
 	/*
@@ -208,7 +174,7 @@
 
 
 /***/ },
-/* 6 */
+/* 4 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/*

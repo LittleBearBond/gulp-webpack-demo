@@ -31,14 +31,21 @@ var config = {
     },
     webpackCfg: {
         //文件入口
-        entry: './dev/main.js',
+        entry: {
+            main: './dev/main.js',
+            a: './dev/a',
+            b: './dev/b'
+        },
         //出口文件输出配置
         output: {
             path: distSrc, //js位置
             publicPath: distSrc, //web打包的资源地址
-            filename: 'build.js'
+            filename: 'build.[name].js' //'build.[name].[hash].js'
         }
     },
+    plugins: [
+        new webpack.optimize.CommonsChunkPlugin('common.js', ['a', 'b'])
+    ],
     webServer: {
         server: './',
         index: 'main.html',

@@ -1,7 +1,3 @@
-
-//load css
-require("./css/a.scss");
-
 //exports
 module.exports = {
     log: function() {

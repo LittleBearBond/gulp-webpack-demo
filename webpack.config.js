@@ -46,6 +46,6 @@ module.exports = function(config) {
         resolve: {
             extensions: ['', '.js', '.jsx']
         },
-        plugins: []
+        plugins: config.plugins || []
     }
 };
