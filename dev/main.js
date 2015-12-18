@@ -7,10 +7,10 @@ var ContentMode = React.createClass({
             < div class = "contents" > {
                 this.props.contents
             } < /div> {
-                this.props.children
-            } < /div>
-        )
-    }
+            this.props.children
+        } < /div>
+    )
+}
 });
 
 /* 页面div封装 上面三个模块 */
@@ -27,5 +27,7 @@ React.render(
     React.createElement(Page, null),
     document.getElementById("content")
 );
-var b = require('./b');
-console.log(b);
+var a = require('./a.js');
+var b = require('./b.js');
+var c = require('./c.js');
+console.log(a, b, c);

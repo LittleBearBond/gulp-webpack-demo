@@ -14,6 +14,7 @@ var webpack = require('webpack');
 //http://www.browsersync.cn/docs/recipes/
 //http://www.browsersync.cn/docs/options/
 //http://www.browsersync.cn/docs/gulp/
+var CommonsChunkPlugin = require("./node_modules/webpack/lib/optimize/CommonsChunkPlugin");
 var browserSync = require('browser-sync').create();
 var reload = browserSync.reload;
 //开发目录
@@ -32,9 +33,7 @@ var config = {
     webpackCfg: {
         //文件入口
         entry: {
-            main: './dev/main.js',
-            a: './dev/a',
-            b: './dev/b'
+            main: './dev/main.js'
         },
         //出口文件输出配置
         output: {
@@ -44,7 +43,8 @@ var config = {
         }
     },
     plugins: [
-        new webpack.optimize.CommonsChunkPlugin('common.js', ['a', 'b'])
+        //new CommonsChunkPlugin("a-c.js", ["a", "c"]),
+        new webpack.optimize.CommonsChunkPlugin('common.js', ['a', 'd'])
     ],
     webServer: {
         server: './',

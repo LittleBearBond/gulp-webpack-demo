@@ -53,10 +53,10 @@
 	            React.createElement("div", {class: "contents"}, " ", 
 	                this.props.contents, 
 	            " "), " ", 
-	                this.props.children, 
-	            " ")
-	        )
-	    }
+	            this.props.children, 
+	        " ")
+	    )
+	}
 	});
 
 	/* 页面div封装 上面三个模块 */
@@ -73,8 +73,10 @@
 	    React.createElement(Page, null),
 	    document.getElementById("content")
 	);
-	var b = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"./b\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
-	console.log(b);
+	var a = __webpack_require__(5);
+	var b = __webpack_require__(6);
+	var c = __webpack_require__(7);
+	console.log(a, b, c);
 
 
 /***/ },
@@ -396,6 +398,55 @@
 		if(oldSrc)
 			URL.revokeObjectURL(oldSrc);
 	}
+
+
+/***/ },
+/* 5 */
+/***/ function(module, exports) {
+
+	//exports
+	console.log('a');
+	module.exports = {
+	    log: function() {
+	        console.log('a--moudle')
+	    },
+	    name: 'a',
+	    test:'test'
+	};
+
+
+/***/ },
+/* 6 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var a = __webpack_require__(5);;
+	console.log('b');
+	module.exports = {
+	    log: function() {
+	        console.log('b--moudle')
+	    },
+	    name: 'b',
+	    a: a
+	};
+
+
+/***/ },
+/* 7 */
+/***/ function(module, exports) {
+
+	 /**
+	  * author           xj
+	  * @date            2015-12-18 16:17:41
+	  * @email           568915669@qq.com
+	  * @description
+	  */
+	 console.log('c');
+	 module.exports = {
+	     log: function() {
+	         console.log('c--moudle')
+	     },
+	     name: 'c'
+	 };
 
 
 /***/ }

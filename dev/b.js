@@ -1,9 +1,9 @@
-require('./a').log();
+var a = require('./a');;
 console.log('b');
-
 module.exports = {
     log: function() {
         console.log('b--moudle')
     },
-    name: 'b'
+    name: 'b',
+    a: a
 };
