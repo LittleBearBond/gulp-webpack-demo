@@ -27,3 +27,4 @@ Desktop.ini
 #!seed/**/node_modules/
 .sass-cache/
 tmp-cmd/
+./dist
