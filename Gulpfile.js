@@ -49,7 +49,7 @@ var config = {
     ],
     webServer: {
         server: './',
-        index: 'main-react.html',
+        index: 'main-vue.html',
         port: 3000,
         ui: {
             port: 8080
