@@ -34,7 +34,17 @@ module.exports = function(config) {
                 {
                     test: /\.js$/,
                     loader: "jsx-loader"
+                },
+                //html
+                {
+                    test: /\.html$/,
+                    loader: "html"
                 }
+                //es6
+                /*{
+                    test: /\.js$/,
+                    loader: 'es6-loader'
+                }*/
                 /*,
                 //图片文件使用 url-loader 来处理，小于8kb的直接转为base64
                 {

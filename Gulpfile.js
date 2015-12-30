@@ -33,7 +33,8 @@ var config = {
     webpackCfg: {
         //文件入口
         entry: {
-            main: './dev/main.js'
+            'main': './dev/main.js',
+            'vue-main': './dev/vue/app.js'
         },
         //出口文件输出配置
         output: {
@@ -48,7 +49,7 @@ var config = {
     ],
     webServer: {
         server: './',
-        index: 'main.html',
+        index: 'main-react.html',
         port: 3000,
         ui: {
             port: 8080
@@ -58,7 +59,7 @@ var config = {
         open: true, //'ui',
         logConnections: true,
         //监听文件
-        files: [distSrc + '**/*.js', distSrc + '**/*.css', './main.html'] //监控变化
+        files: [distSrc + '**/*.js', distSrc + '**/*.css', './*.html'] //监控变化
     },
 };
 

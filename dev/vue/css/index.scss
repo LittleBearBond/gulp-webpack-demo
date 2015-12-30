@@ -1,0 +1,22 @@
+@charset "UTF-8";
+
+/**
+ *
+ * @authors xj
+ * @email   568915669@qq.com
+ * @date    2015-12-30 15:28:10
+ * @version 0.1.0
+ */
+.my-msg {
+    background: #ccc;
+
+    .test {
+        color: #fff;
+    }
+}
+.fade-transition {
+  transition: opacity .3s ease;
+}
+.fade-enter, .fade-leave {
+  opacity: 0;
+}

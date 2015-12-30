@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0">
+    <meta content="telephone=no" name="format-detection">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="full-screen" content="true">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="x5-fullscreen" content="true">
+    <meta name="360-fullscreen" content="true">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <link href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet">
+</head>
+<body>
+
+    <div id="app">
+        <div class="alert alert-success">
+            <a href="#page1" class="btn btn-default">Go to page 1</a>
+            <a href="#page2" class="btn btn-default">Go to page 2</a>
+            <a href="#page3" class="btn btn-default">Go to page 3</a>
+        </div>
+        <!-- 如果把切换出去的组件保留在内存中，可以保留它的状态或避免重新渲染。为此可以添加一个 keep-alive -->
+        <component is="page1" keep-alive
+            transition="fade"
+            transition-mode="out-in" >
+        </component>
+        <h1>{{ msg }}</h1>
+    </div>
+
+    <script src="dev/vue/vue.js"></script>
+    <script src="dist/build.vue-main.js"></script>
+
+</body>
+</html>
