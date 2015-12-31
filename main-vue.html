@@ -20,20 +20,21 @@
 
     <div id="app">
         <div class="alert alert-success">
-            <a href="#page1" class="btn btn-default">Go to page 1</a>
-            <a href="#page2" class="btn btn-default">Go to page 2</a>
-            <a href="#page3" class="btn btn-default">Go to page 3</a>
+            <a v-link="{ path: '/page1'}" class="btn btn-default">Go to page 1</a>
+            <a v-link="{ path: '/page2'}" class="btn btn-default">Go to page 2</a>
+            <a v-link="{ path: '/page3'}" class="btn btn-default">Go to page 3</a>
         </div>
         <!-- 如果把切换出去的组件保留在内存中，可以保留它的状态或避免重新渲染。为此可以添加一个 keep-alive -->
-        <component is="page1" keep-alive
-            transition="fade"
-            transition-mode="out-in" >
-        </component>
+        <!-- <component is="page1" keep-alive
+        transition="fade"
+        transition-mode="out-in" > </component>-->
         <h1>{{ msg }}</h1>
+        <!-- 路由外链 -->
+        <router-view transition="fade"
+        transition-mode="out-in"></router-view>
     </div>
-
     <script src="dev/vue/vue.js"></script>
+    <script src="dev/vue/vue-router.js"></script>
     <script src="dist/build.vue-main.js"></script>
-
 </body>
 </html>

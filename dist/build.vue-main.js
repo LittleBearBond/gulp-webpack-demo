@@ -1,35 +1,6 @@
 /******/ (function(modules) { // webpackBootstrap
-/******/ 	// install a JSONP callback for chunk loading
-/******/ 	var parentJsonpFunction = window["webpackJsonp"];
-/******/ 	window["webpackJsonp"] = function webpackJsonpCallback(chunkIds, moreModules) {
-/******/ 		// add "moreModules" to the modules object,
-/******/ 		// then flag all "chunkIds" as loaded and fire callback
-/******/ 		var moduleId, chunkId, i = 0, callbacks = [];
-/******/ 		for(;i < chunkIds.length; i++) {
-/******/ 			chunkId = chunkIds[i];
-/******/ 			if(installedChunks[chunkId])
-/******/ 				callbacks.push.apply(callbacks, installedChunks[chunkId]);
-/******/ 			installedChunks[chunkId] = 0;
-/******/ 		}
-/******/ 		for(moduleId in moreModules) {
-/******/ 			modules[moduleId] = moreModules[moduleId];
-/******/ 		}
-/******/ 		if(parentJsonpFunction) parentJsonpFunction(chunkIds, moreModules);
-/******/ 		while(callbacks.length)
-/******/ 			callbacks.shift().call(null, __webpack_require__);
-
-/******/ 	};
-
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
-
-/******/ 	// object to store loaded and loading chunks
-/******/ 	// "0" means "already loaded"
-/******/ 	// Array means "loading", array contains callbacks
-/******/ 	var installedChunks = {
-/******/ 		1:0,
-/******/ 		4:0
-/******/ 	};
 
 /******/ 	// The require function
 /******/ 	function __webpack_require__(moduleId) {
@@ -55,29 +26,6 @@
 /******/ 		return module.exports;
 /******/ 	}
 
-/******/ 	// This file contains only the entry chunk.
-/******/ 	// The chunk loading function for additional chunks
-/******/ 	__webpack_require__.e = function requireEnsure(chunkId, callback) {
-/******/ 		// "0" is the signal for "already loaded"
-/******/ 		if(installedChunks[chunkId] === 0)
-/******/ 			return callback.call(null, __webpack_require__);
-
-/******/ 		// an array means "currently loading".
-/******/ 		if(installedChunks[chunkId] !== undefined) {
-/******/ 			installedChunks[chunkId].push(callback);
-/******/ 		} else {
-/******/ 			// start chunk loading
-/******/ 			installedChunks[chunkId] = [callback];
-/******/ 			var head = document.getElementsByTagName('head')[0];
-/******/ 			var script = document.createElement('script');
-/******/ 			script.type = 'text/javascript';
-/******/ 			script.charset = 'utf-8';
-/******/ 			script.async = true;
-
-/******/ 			script.src = __webpack_require__.p + "" + chunkId + ".build." + ({}[chunkId]||chunkId) + ".js";
-/******/ 			head.appendChild(script);
-/******/ 		}
-/******/ 	};
 
 /******/ 	// expose the modules object (__webpack_modules__)
 /******/ 	__webpack_require__.m = modules;
@@ -105,35 +53,65 @@
 	__webpack_require__(8);
 
 	var MyComponent = Vue.extend({
-	    template: '<div class="alert alert-warning" role="alert">MyComponentMyComponent</div>'
+	    template: '<div class="alert alert-warning" role="alert">MyComponent---MyComponent</div>'
 	});
 
 	var vm = new Vue({
-	    el: "#app",
+	    // el: "#app",
 	    data: {
 	        view: 'page3',
 	        msg: 'hello little bear'
 	    },
 	    components: {
-	        'page1': function(resolve, reject) {
-	            __webpack_require__.e/* require */(2, function(__webpack_require__) { var __WEBPACK_AMD_REQUIRE_ARRAY__ = [__webpack_require__(10)]; (resolve.apply(null, __WEBPACK_AMD_REQUIRE_ARRAY__));});
+	        /*'page1': function(resolve, reject) {
+	            require(['./view/a'], resolve);
 	        },
 	        'page2': function(resolve, reject) {
 	            // 这个特殊的 require 语法告诉 webpack
 	            // 自动将编译后的代码分割成不同的块，
 	            // 这些块将通过 ajax 请求自动下载。
-	            __webpack_require__.e/* require */(3, function(__webpack_require__) { var __WEBPACK_AMD_REQUIRE_ARRAY__ = [__webpack_require__(20)]; (resolve.apply(null, __WEBPACK_AMD_REQUIRE_ARRAY__));});
+	            require(['./view/b'], resolve);
 	        },
-	        'page3': MyComponent
+	        'page3': MyComponent*/
 	    }
 	});
 
-	function route() {
-	    vm.view = window.location.hash.slice(1) || 'page1';
-	}
+	var page1 = Vue.extend(__webpack_require__(10));
+	var page2 = Vue.extend(__webpack_require__(20));
+	var page3 = MyComponent;
+	// 路由器需要一个根组件。
+	// 出于演示的目的，这里使用一个空的组件，直接使用 HTML 作为应用的模板
+	var App = Vue.extend({
+	    data: function() {
+	        return {
+	            msg: 'hello little bear'
+	        };
+	    }
+	})
 
-	window.addEventListener('hashchange', route)
-	window.addEventListener('load', route)
+	// 创建一个路由器实例
+	// 创建实例时可以传入配置参数进行定制，为保持简单，这里使用默认配置
+	var router = new VueRouter()
+
+	// 定义路由规则
+	// 每条路由规则应该映射到一个组件。这里的“组件”可以是一个使用 Vue.extend
+	// 创建的组件构造函数，也可以是一个组件选项对象。
+	// 稍后我们会讲解嵌套路由
+	router.map({
+	    '/page1': {
+	        component: page1
+	    },
+	    '/page2': {
+	        component: page2
+	    },
+	    '/page3': {
+	        component: page3
+	    }
+	})
+
+	// 现在我们可以启动应用了！
+	// 路由器会创建一个 App 实例，并且挂载到选择符 #app 匹配的元素上。
+	router.start(App, '#app')
 
 
 /***/ },
@@ -460,6 +438,167 @@
 	exports.push([module.id, "/**\n *\n * @authors xj\n * @email   568915669@qq.com\n * @date    2015-12-30 15:28:10\n * @version 0.1.0\n */\n.my-msg {\n  background: #ccc; }\n  .my-msg .test {\n    color: #fff; }\n\n.fade-transition {\n  -webkit-transition: opacity .3s ease;\n  transition: opacity .3s ease; }\n\n.fade-enter, .fade-leave {\n  opacity: 0; }\n", ""]);
 
 	// exports
+
+
+/***/ },
+/* 10 */
+/***/ function(module, exports, __webpack_require__) {
+
+	module.exports = {
+	    template: __webpack_require__(11),
+	    replace: true,
+	    data: function() {
+	        return {
+	            firstname: 'little',
+	            lastname: 'bear'
+	        }
+	    },
+	    computed: {
+	        fullname: function() {
+	            return this.firstname + this.lastname
+	        }
+	    },
+	    components: {
+	        'app-com1': __webpack_require__(12),
+	        'app-com2': __webpack_require__(16)
+	    }
+	};
+
+
+/***/ },
+/* 11 */
+/***/ function(module, exports) {
+
+	module.exports = "\n<div class=\"alert alert-warning\">\n  <strong>Warning!</strong>\n  <app-com1 :firstname=\"firstname\"  :lastname=\"lastname\"></app-com1>\n  <app-com2 :fullname=\"fullname\"></app-com2>\n</div>\n";
+
+/***/ },
+/* 12 */
+/***/ function(module, exports, __webpack_require__) {
+
+	__webpack_require__(13);
+
+	module.exports = {
+	    template: __webpack_require__(15),
+	    props: ['firstname', 'lastname']
+	};
+
+
+/***/ },
+/* 13 */
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+
+	// load the styles
+	var content = __webpack_require__(14);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(4)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./../../../../node_modules/autoprefixer-loader/index.js!./index.scss", function() {
+				var newContent = require("!!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./../../../../node_modules/autoprefixer-loader/index.js!./index.scss");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 14 */
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(3)();
+	// imports
+
+
+	// module
+	exports.push([module.id, "", ""]);
+
+	// exports
+
+
+/***/ },
+/* 15 */
+/***/ function(module, exports) {
+
+	module.exports = "<h1>{{firstname}}---{{lastname}}</h1>\n";
+
+/***/ },
+/* 16 */
+/***/ function(module, exports, __webpack_require__) {
+
+	__webpack_require__(17);
+
+	module.exports = {
+	    template: __webpack_require__(19),
+	    props: ['fullname']
+	};
+
+
+/***/ },
+/* 17 */
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+
+	// load the styles
+	var content = __webpack_require__(18);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(4)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./../../../../node_modules/autoprefixer-loader/index.js!./index.scss", function() {
+				var newContent = require("!!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./../../../../node_modules/autoprefixer-loader/index.js!./index.scss");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 18 */
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(3)();
+	// imports
+
+
+	// module
+	exports.push([module.id, ".alert-danger-com {\n  line-height: 50px;\n  font-size: 30px; }\n", ""]);
+
+	// exports
+
+
+/***/ },
+/* 19 */
+/***/ function(module, exports) {
+
+	module.exports = "<div class=\"alert alert-danger alert-danger-com\">{{fullname}}</div>\n";
+
+/***/ },
+/* 20 */
+/***/ function(module, exports) {
+
+	module.exports = {
+	  template: `<div class="alert alert-info" role="alert">
+	      <strong>Heads up! view/b</strong>
+	      <p>当前路径: {{$route.path}}</p>
+	      <p>当前路由参数: {{$route.params | json}}</p>
+	    </div>`,
+	  replace: true
+	};
 
 
 /***/ }
