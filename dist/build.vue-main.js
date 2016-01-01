@@ -44,13 +44,15 @@
 /* 0 */
 /***/ function(module, exports, __webpack_require__) {
 
+	'use strict';
+
 	/**
 	 * author           xj
 	 * @date            2015-12-30 15:31:47
 	 * @email           568915669@qq.com
 	 * @description
 	 */
-	__webpack_require__(8);
+	__webpack_require__(1);
 
 	var MyComponent = Vue.extend({
 	    template: '<div class="alert alert-warning" role="alert">MyComponent---MyComponent</div>'
@@ -76,22 +78,22 @@
 	    }
 	});
 
-	var page1 = Vue.extend(__webpack_require__(10));
-	var page2 = Vue.extend(__webpack_require__(20));
+	var page1 = Vue.extend(__webpack_require__(5));
+	var page2 = Vue.extend(__webpack_require__(15));
 	var page3 = MyComponent;
 	// 路由器需要一个根组件。
 	// 出于演示的目的，这里使用一个空的组件，直接使用 HTML 作为应用的模板
 	var App = Vue.extend({
-	    data: function() {
+	    data: function data() {
 	        return {
 	            msg: 'hello little bear'
 	        };
 	    }
-	})
+	});
 
 	// 创建一个路由器实例
 	// 创建实例时可以传入配置参数进行定制，为保持简单，这里使用默认配置
-	var router = new VueRouter()
+	var router = new VueRouter();
 
 	// 定义路由规则
 	// 每条路由规则应该映射到一个组件。这里的“组件”可以是一个使用 Vue.extend
@@ -107,16 +109,53 @@
 	    '/page3': {
 	        component: page3
 	    }
-	})
+	});
 
 	// 现在我们可以启动应用了！
 	// 路由器会创建一个 App 实例，并且挂载到选择符 #app 匹配的元素上。
-	router.start(App, '#app')
+	router.start(App, '#app');
+
+/***/ },
+/* 1 */
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+
+	// load the styles
+	var content = __webpack_require__(2);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(4)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../../../node_modules/css-loader/index.js!./../../../node_modules/sass-loader/index.js!./../../../node_modules/autoprefixer-loader/index.js!./index.scss", function() {
+				var newContent = require("!!./../../../node_modules/css-loader/index.js!./../../../node_modules/sass-loader/index.js!./../../../node_modules/autoprefixer-loader/index.js!./index.scss");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 2 */
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(3)();
+	// imports
+
+
+	// module
+	exports.push([module.id, "/**\n *\n * @authors xj\n * @email   568915669@qq.com\n * @date    2015-12-30 15:28:10\n * @version 0.1.0\n */\n.my-msg {\n  background: #ccc; }\n  .my-msg .test {\n    color: #fff; }\n\n.fade-transition {\n  -webkit-transition: opacity .3s ease;\n  transition: opacity .3s ease; }\n\n.fade-enter, .fade-leave {\n  opacity: 0; }\n", ""]);
+
+	// exports
 
 
 /***/ },
-/* 1 */,
-/* 2 */,
 /* 3 */
 /***/ function(module, exports) {
 
@@ -398,9 +437,51 @@
 
 
 /***/ },
-/* 5 */,
-/* 6 */,
-/* 7 */,
+/* 5 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	module.exports = {
+	    template: __webpack_require__(6),
+	    replace: true,
+	    data: function data() {
+	        return {
+	            firstname: 'little',
+	            lastname: 'bear'
+	        };
+	    },
+	    computed: {
+	        fullname: function fullname() {
+	            return this.firstname + this.lastname;
+	        }
+	    },
+	    components: {
+	        'app-com1': __webpack_require__(7),
+	        'app-com2': __webpack_require__(11)
+	    }
+	};
+
+/***/ },
+/* 6 */
+/***/ function(module, exports) {
+
+	module.exports = "\n<div class=\"alert alert-warning\">\n  <strong>Warning!</strong>\n  <app-com1 :firstname=\"firstname\"  :lastname=\"lastname\"></app-com1>\n  <app-com2 :fullname=\"fullname\"></app-com2>\n</div>\n";
+
+/***/ },
+/* 7 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	__webpack_require__(8);
+
+	module.exports = {
+	    template: __webpack_require__(10),
+	    props: ['firstname', 'lastname']
+	};
+
+/***/ },
 /* 8 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -416,8 +497,8 @@
 	if(false) {
 		// When the styles change, update the <style> tags
 		if(!content.locals) {
-			module.hot.accept("!!./../../../node_modules/css-loader/index.js!./../../../node_modules/sass-loader/index.js!./../../../node_modules/autoprefixer-loader/index.js!./index.scss", function() {
-				var newContent = require("!!./../../../node_modules/css-loader/index.js!./../../../node_modules/sass-loader/index.js!./../../../node_modules/autoprefixer-loader/index.js!./index.scss");
+			module.hot.accept("!!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./../../../../node_modules/autoprefixer-loader/index.js!./index.scss", function() {
+				var newContent = require("!!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./../../../../node_modules/autoprefixer-loader/index.js!./index.scss");
 				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 				update(newContent);
 			});
@@ -435,120 +516,38 @@
 
 
 	// module
-	exports.push([module.id, "/**\n *\n * @authors xj\n * @email   568915669@qq.com\n * @date    2015-12-30 15:28:10\n * @version 0.1.0\n */\n.my-msg {\n  background: #ccc; }\n  .my-msg .test {\n    color: #fff; }\n\n.fade-transition {\n  -webkit-transition: opacity .3s ease;\n  transition: opacity .3s ease; }\n\n.fade-enter, .fade-leave {\n  opacity: 0; }\n", ""]);
-
-	// exports
-
-
-/***/ },
-/* 10 */
-/***/ function(module, exports, __webpack_require__) {
-
-	module.exports = {
-	    template: __webpack_require__(11),
-	    replace: true,
-	    data: function() {
-	        return {
-	            firstname: 'little',
-	            lastname: 'bear'
-	        }
-	    },
-	    computed: {
-	        fullname: function() {
-	            return this.firstname + this.lastname
-	        }
-	    },
-	    components: {
-	        'app-com1': __webpack_require__(12),
-	        'app-com2': __webpack_require__(16)
-	    }
-	};
-
-
-/***/ },
-/* 11 */
-/***/ function(module, exports) {
-
-	module.exports = "\n<div class=\"alert alert-warning\">\n  <strong>Warning!</strong>\n  <app-com1 :firstname=\"firstname\"  :lastname=\"lastname\"></app-com1>\n  <app-com2 :fullname=\"fullname\"></app-com2>\n</div>\n";
-
-/***/ },
-/* 12 */
-/***/ function(module, exports, __webpack_require__) {
-
-	__webpack_require__(13);
-
-	module.exports = {
-	    template: __webpack_require__(15),
-	    props: ['firstname', 'lastname']
-	};
-
-
-/***/ },
-/* 13 */
-/***/ function(module, exports, __webpack_require__) {
-
-	// style-loader: Adds some css to the DOM by adding a <style> tag
-
-	// load the styles
-	var content = __webpack_require__(14);
-	if(typeof content === 'string') content = [[module.id, content, '']];
-	// add the styles to the DOM
-	var update = __webpack_require__(4)(content, {});
-	if(content.locals) module.exports = content.locals;
-	// Hot Module Replacement
-	if(false) {
-		// When the styles change, update the <style> tags
-		if(!content.locals) {
-			module.hot.accept("!!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./../../../../node_modules/autoprefixer-loader/index.js!./index.scss", function() {
-				var newContent = require("!!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./../../../../node_modules/autoprefixer-loader/index.js!./index.scss");
-				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-				update(newContent);
-			});
-		}
-		// When the module is disposed, remove the <style> tags
-		module.hot.dispose(function() { update(); });
-	}
-
-/***/ },
-/* 14 */
-/***/ function(module, exports, __webpack_require__) {
-
-	exports = module.exports = __webpack_require__(3)();
-	// imports
-
-
-	// module
 	exports.push([module.id, "", ""]);
 
 	// exports
 
 
 /***/ },
-/* 15 */
+/* 10 */
 /***/ function(module, exports) {
 
 	module.exports = "<h1>{{firstname}}---{{lastname}}</h1>\n";
 
 /***/ },
-/* 16 */
+/* 11 */
 /***/ function(module, exports, __webpack_require__) {
 
-	__webpack_require__(17);
+	'use strict';
+
+	__webpack_require__(12);
 
 	module.exports = {
-	    template: __webpack_require__(19),
+	    template: __webpack_require__(14),
 	    props: ['fullname']
 	};
 
-
 /***/ },
-/* 17 */
+/* 12 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(18);
+	var content = __webpack_require__(13);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(4)(content, {});
@@ -568,7 +567,7 @@
 	}
 
 /***/ },
-/* 18 */
+/* 13 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(3)();
@@ -582,24 +581,21 @@
 
 
 /***/ },
-/* 19 */
+/* 14 */
 /***/ function(module, exports) {
 
 	module.exports = "<div class=\"alert alert-danger alert-danger-com\">{{fullname}}</div>\n";
 
 /***/ },
-/* 20 */
+/* 15 */
 /***/ function(module, exports) {
 
+	"use strict";
+
 	module.exports = {
-	  template: `<div class="alert alert-info" role="alert">
-	      <strong>Heads up! view/b</strong>
-	      <p>当前路径: {{$route.path}}</p>
-	      <p>当前路由参数: {{$route.params | json}}</p>
-	    </div>`,
+	  template: "<div class=\"alert alert-info\" role=\"alert\">\n      <strong>Heads up! view/b</strong>\n      <p>当前路径: {{$route.path}}</p>\n      <p>当前路由参数: {{$route.params | json}}</p>\n    </div>",
 	  replace: true
 	};
-
 
 /***/ }
 /******/ ]);

@@ -10,6 +10,7 @@
 //css min
 //tpl-->js
 var gulp = require('gulp');
+var gutil = require("gulp-util");
 var webpack = require('webpack');
 //http://www.browsersync.cn/docs/recipes/
 //http://www.browsersync.cn/docs/options/
@@ -27,13 +28,16 @@ var config = {
         //sas
         devSrc + '**/*.scss',
         //script:
-        devSrc + '**/*.js'
+        devSrc + '**/*.js',
+        //vue
+        devSrc + '**/*.vue'
     ],
     webpackCfg: {
         //文件入口
         entry: {
-            'main': './dev/main.js',
-            'vue-main': './dev/vue/app.js'
+            //'main': './dev/main.js',
+            'vue-main': './dev/vue/app.js',
+            'vue-test-loader': './dev/vue-test-loader/main.js'
         },
         //出口文件输出配置
         output: {
@@ -48,7 +52,7 @@ var config = {
     ],
     webServer: {
         server: './',
-        index: 'main-vue.html',
+        index: 'main-vue-test-loader.html', //'main-vue.html',
         port: 3000,
         ui: {
             port: 8080
@@ -65,16 +69,16 @@ var config = {
 //读取到webpack的配置
 var webpackConfig = require('./webpack.config.js')(config);
 
-gulp.task('webpack-task', () => {
-    //console.log(webpackConfig)
-
+gulp.task('webpack-task', callback => {
     webpack(webpackConfig, function(err, stats) {
-        console.log(err)
+        if (err) {
+            throw new gutil.PluginError("webpack", err);
+        }
+        gutil.log("[webpack]", stats.toString({
+            // output options
+        }));
+        callback();
     });
-    /*return gulp
-        .src(devSrc + 'main.js')
-        .pipe(webpack(webpackConfig))
-        .pipe(gulp.dest('./dist'));*/
 });
 
 // web服务 Server + watching scss/js files
@@ -82,9 +86,8 @@ gulp.task('web-server', () => {
     browserSync.init(config.webServer);
 });
 
-// 注册缺省任务
+//注册缺省任务
 //gulp.task('default', ['webpack-task']);
-
 gulp.task('watch', ['webpack-task', 'web-server'], () => {
     gulp.watch(config.watch, ['webpack-task']);
     //reload
