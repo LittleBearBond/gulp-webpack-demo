@@ -23,13 +23,12 @@ var devSrc = './dev/';
 var distSrc = './dist/';
 //相关配置项
 var config = {
-    //sass 相关配置
-    sass: {
-        watchSrc: devSrc + '**/*.scss'
-    },
-    script: {
-        watchSrc: devSrc + '**/*.js', //监控脚本
-    },
+    watch: [
+        //sas
+        devSrc + '**/*.scss',
+        //script:
+        devSrc + '**/*.js'
+    ],
     webpackCfg: {
         //文件入口
         entry: {
@@ -87,10 +86,7 @@ gulp.task('web-server', () => {
 //gulp.task('default', ['webpack-task']);
 
 gulp.task('watch', ['webpack-task', 'web-server'], () => {
-
-    gulp.watch(config.script.watchSrc, ['webpack-task']);
-    gulp.watch(config.sass.watchSrc, ['webpack-task']);
-
+    gulp.watch(config.watch, ['webpack-task']);
     //reload
     //gulp.watch(config.sass.watchSrc).on('change', reload);
     //gulp.watch(config.script.watchSrc).on('change', reload);
