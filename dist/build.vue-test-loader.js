@@ -56,7 +56,7 @@
 	    el: 'body',
 	    data: function data() {
 	        return {
-	            msg: 'hello'
+	            msg: 'hello---'
 	        };
 	    },
 	    components: { App: _app2.default }
@@ -371,7 +371,7 @@
 	  var hotAPI = require("vue-hot-reload-api")
 	  hotAPI.install(require("vue"), true)
 	  if (!hotAPI.compatible) return
-	  var id = "/Users/little_bear/files/my-code/gulp-webpack-demo/dev/vue-test-loader/app.vue"
+	  var id = "/Users/files/mycode/gulp-webpack-demo/dev/vue-test-loader/app.vue"
 	  if (!module.hot.data) {
 	    hotAPI.createRecord(id, module.exports)
 	  } else {
@@ -395,8 +395,8 @@
 	if(false) {
 		// When the styles change, update the <style> tags
 		if(!content.locals) {
-			module.hot.accept("!!./../../node_modules/css-loader/index.js!./../../node_modules/vue-loader/lib/style-rewriter.js?id=_v-904891ca&file=app.vue!./../../node_modules/sass-loader/index.js!./../../node_modules/vue-loader/lib/selector.js?type=style&index=0!./app.vue", function() {
-				var newContent = require("!!./../../node_modules/css-loader/index.js!./../../node_modules/vue-loader/lib/style-rewriter.js?id=_v-904891ca&file=app.vue!./../../node_modules/sass-loader/index.js!./../../node_modules/vue-loader/lib/selector.js?type=style&index=0!./app.vue");
+			module.hot.accept("!!./../../node_modules/css-loader/index.js!./../../node_modules/vue-loader/lib/style-rewriter.js?id=_v-1edcb8e8&file=app.vue!./../../node_modules/sass-loader/index.js!./../../node_modules/vue-loader/lib/selector.js?type=style&index=0!./app.vue", function() {
+				var newContent = require("!!./../../node_modules/css-loader/index.js!./../../node_modules/vue-loader/lib/style-rewriter.js?id=_v-1edcb8e8&file=app.vue!./../../node_modules/sass-loader/index.js!./../../node_modules/vue-loader/lib/selector.js?type=style&index=0!./app.vue");
 				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 				update(newContent);
 			});
@@ -439,10 +439,18 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+	// <template>
+	//     <div class="example">{{ msg }}</div>
+	//     <app-a></app-a>
+	//     <app-b></app-b>
+	// </template>
+	//
+	//
+	// <script>
 	exports.default = {
 	  data: function data() {
 	    return {
-	      msg: 'Hello from vue-loader!'
+	      msg: 'Hello from vue-loaderdddddddd!'
 	    };
 	  },
 
@@ -451,6 +459,15 @@
 	    appB: _b2.default
 	  }
 	};
+	// </script>
+	//
+	// <style lang="sass">
+	//     .example{
+	//         line-height: 30px;
+	//         background-color: #ff0;
+	//     }
+	// </style>
+	//
 
 /***/ },
 /* 20 */
@@ -467,7 +484,7 @@
 	  var hotAPI = require("vue-hot-reload-api")
 	  hotAPI.install(require("vue"), true)
 	  if (!hotAPI.compatible) return
-	  var id = "/Users/little_bear/files/my-code/gulp-webpack-demo/dev/vue-test-loader/components/a.vue"
+	  var id = "/Users/files/mycode/gulp-webpack-demo/dev/vue-test-loader/components/a.vue"
 	  if (!module.hot.data) {
 	    hotAPI.createRecord(id, module.exports)
 	  } else {
@@ -491,8 +508,8 @@
 	if(false) {
 		// When the styles change, update the <style> tags
 		if(!content.locals) {
-			module.hot.accept("!!./../../../node_modules/css-loader/index.js!./../../../node_modules/vue-loader/lib/style-rewriter.js?id=_v-0bf9559e&file=a.vue&scoped=true!./../../../node_modules/sass-loader/index.js!./../../../node_modules/vue-loader/lib/selector.js?type=style&index=0!./a.vue", function() {
-				var newContent = require("!!./../../../node_modules/css-loader/index.js!./../../../node_modules/vue-loader/lib/style-rewriter.js?id=_v-0bf9559e&file=a.vue&scoped=true!./../../../node_modules/sass-loader/index.js!./../../../node_modules/vue-loader/lib/selector.js?type=style&index=0!./a.vue");
+			module.hot.accept("!!./../../../node_modules/css-loader/index.js!./../../../node_modules/vue-loader/lib/style-rewriter.js?id=_v-434deb1e&file=a.vue&scoped=true!./../../../node_modules/sass-loader/index.js!./../../../node_modules/vue-loader/lib/selector.js?type=style&index=0!./a.vue", function() {
+				var newContent = require("!!./../../../node_modules/css-loader/index.js!./../../../node_modules/vue-loader/lib/style-rewriter.js?id=_v-434deb1e&file=a.vue&scoped=true!./../../../node_modules/sass-loader/index.js!./../../../node_modules/vue-loader/lib/selector.js?type=style&index=0!./a.vue");
 				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 				update(newContent);
 			});
@@ -510,7 +527,7 @@
 
 
 	// module
-	exports.push([module.id, ".container[_v-0bf9559e] {\n  height: 100px; }\n", ""]);
+	exports.push([module.id, ".container[_v-434deb1e] {\n  height: 100px; }\n", ""]);
 
 	// exports
 
@@ -534,6 +551,22 @@
 	    };
 	  }
 	};
+	// </script>
+	//
+	//
+	// <style lang="sass" scoped>
+	//     .container{
+	//         height:100px;
+	//     }
+	// </style>
+	//
+	// <template>
+	//   <div class="container alert alert-danger">
+	//       <h2 class="red">{{msg}} from A</h2>
+	//   </div>
+	// </template>
+	//
+	// <script>
 
 /***/ },
 /* 24 */
@@ -553,7 +586,7 @@
 /* 25 */
 /***/ function(module, exports) {
 
-	module.exports = "<div class=\"container alert alert-danger\" _v-0bf9559e=\"\">\n      <h2 class=\"red\" _v-0bf9559e=\"\">{{msg}} from A</h2>\n  </div>\n";
+	module.exports = "\n  <div class=\"container alert alert-danger\" _v-434deb1e=\"\">\n      <h2 class=\"red\" _v-434deb1e=\"\">{{msg}} from A</h2>\n  </div>\n";
 
 /***/ },
 /* 26 */
@@ -569,7 +602,7 @@
 	  var hotAPI = require("vue-hot-reload-api")
 	  hotAPI.install(require("vue"), true)
 	  if (!hotAPI.compatible) return
-	  var id = "/Users/little_bear/files/my-code/gulp-webpack-demo/dev/vue-test-loader/components/b.vue"
+	  var id = "/Users/files/mycode/gulp-webpack-demo/dev/vue-test-loader/components/b.vue"
 	  if (!module.hot.data) {
 	    hotAPI.createRecord(id, module.exports)
 	  } else {
@@ -593,8 +626,8 @@
 	if(false) {
 		// When the styles change, update the <style> tags
 		if(!content.locals) {
-			module.hot.accept("!!./../../../node_modules/css-loader/index.js!./../../../node_modules/vue-loader/lib/style-rewriter.js?id=_v-0c076d1f&file=b.vue&scoped=true!./../../../node_modules/sass-loader/index.js!./../../../node_modules/vue-loader/lib/selector.js?type=style&index=0!./b.vue", function() {
-				var newContent = require("!!./../../../node_modules/css-loader/index.js!./../../../node_modules/vue-loader/lib/style-rewriter.js?id=_v-0c076d1f&file=b.vue&scoped=true!./../../../node_modules/sass-loader/index.js!./../../../node_modules/vue-loader/lib/selector.js?type=style&index=0!./b.vue");
+			module.hot.accept("!!./../../../node_modules/css-loader/index.js!./../../../node_modules/vue-loader/lib/style-rewriter.js?id=_v-4331bc1c&file=b.vue&scoped=true!./../../../node_modules/sass-loader/index.js!./../../../node_modules/vue-loader/lib/selector.js?type=style&index=0!./b.vue", function() {
+				var newContent = require("!!./../../../node_modules/css-loader/index.js!./../../../node_modules/vue-loader/lib/style-rewriter.js?id=_v-4331bc1c&file=b.vue&scoped=true!./../../../node_modules/sass-loader/index.js!./../../../node_modules/vue-loader/lib/selector.js?type=style&index=0!./b.vue");
 				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 				update(newContent);
 			});
@@ -612,7 +645,7 @@
 
 
 	// module
-	exports.push([module.id, ".container[_v-0c076d1f] {\n  border: 1px solid #f00; }\n\nh2[_v-0c076d1f] {\n  color: #393; }\n", ""]);
+	exports.push([module.id, ".container[_v-4331bc1c] {\n  border: 1px solid #f00; }\n\nh2[_v-4331bc1c] {\n  color: #393; }\n", ""]);
 
 	// exports
 
@@ -621,13 +654,13 @@
 /* 29 */
 /***/ function(module, exports) {
 
-	module.exports = "<div class=\"container alert alert-danger\" _v-0c076d1f=\"\">\n    <h2 _v-0c076d1f=\"\">Hello from Component B!</h2>\n  </div>\n";
+	module.exports = "\n  <div class=\"container alert alert-danger\" _v-4331bc1c=\"\">\n    <h2 _v-4331bc1c=\"\">Hello from Component B!</h2>\n  </div>\n";
 
 /***/ },
 /* 30 */
 /***/ function(module, exports) {
 
-	module.exports = "<div class=\"example\">{{ msg }}</div>\n    <app-a></app-a>\n    <app-b></app-b>\n";
+	module.exports = "\n    <div class=\"example\">{{ msg }}</div>\n    <app-a></app-a>\n    <app-b></app-b>\n";
 
 /***/ }
 /******/ ]);

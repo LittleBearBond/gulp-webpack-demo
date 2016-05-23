@@ -4,7 +4,7 @@ new Vue({
     el: 'body',
     data: function() {
         return {
-            msg: 'hello'
+            msg: 'hello---'
         }
     },
     components: { App }

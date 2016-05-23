@@ -11,7 +11,7 @@ import appB from './components/b.vue'
 export default {
   data () {
     return {
-      msg: 'Hello from vue-loader!'
+      msg: 'Hello from vue-loaderdddddddd!'
     }
   },
   components: {
